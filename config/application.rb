@@ -8,7 +8,11 @@ require 'rails/all'
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
 
+# Base configuration for the UserGenius Rails application.
+# This class configures settings for the entire application.
 module UserGenius
+  # Base configuration for the UserGenius Rails application.
+  # This class configures settings for the entire application.
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 7.1
