@@ -57,6 +57,8 @@ group :development, :test do
 
   # RuboCop for code linting and formatting
   gem 'rubocop', '~> 1.64', require: false
+  gem 'rspec-rails'
+  gem 'webmock'  
 end
 
 group :development do
@@ -75,6 +77,7 @@ end
 
 group :test do
   # Use system testing [https://guides.rubyonrails.org/testing.html#system-testing]
-  gem 'capybara'
-  gem 'selenium-webdriver'
+  # gem 'capybara'
+  # gem 'selenium-webdriver'
+  gem 'fakeredis', require: 'fakeredis'
 end
