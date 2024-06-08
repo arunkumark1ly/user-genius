@@ -1,8 +1,8 @@
 class RecalculateAverageAgeJob
-  include Sidekiq::Worker
+  include Sidekiq::Job
 
-  def perform(daily_record_date_str, gender)
-    daily_record_date = Date.iso8601(daily_record_date_str)
+  def perform(daily_record_date, gender)
+    daily_record_date = Date.iso8601(daily_record_date)
     daily_record = DailyRecord.find_by(date: daily_record_date)
     return unless daily_record
 
