@@ -1,7 +1,7 @@
 class FetchUsersJob
   include Sidekiq::Job
 
-  def perform(*args)
+  def perform
     response = HTTParty.get('https://randomuser.me/api/?results=20')
     if response.success?
       users_data = response.parsed_response['results']

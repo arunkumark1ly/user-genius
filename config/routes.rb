@@ -9,4 +9,16 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   # root "posts#index"
+
+  require 'sidekiq/web'
+
+  # Optional: Basic Authentication for Sidekiq Web UI
+  Sidekiq::Web.use Rack::Auth::Basic do |username, password|
+    # Environment variables for security
+    # username == ENV['SIDEKIQ_USERNAME'] && password == ENV['SIDEKIQ_PASSWORD']
+    username == 'admin' && password == 'admin'
+  end
+
+  # Mounting Sidekiq Web UI
+  mount Sidekiq::Web => '/sidekiq'
 end
