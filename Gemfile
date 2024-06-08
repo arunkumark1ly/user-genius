@@ -48,8 +48,6 @@ gem 'bootsnap', require: false
 # Sidekiq for background job processing
 gem 'sidekiq'
 gem 'sidekiq-scheduler'
-# If you're using Rails 5 or older, you might need to add Sinatra explicitly
-gem 'sinatra', require: nil
 
 # HTTParty is used for making HTTP requests to external APIs
 gem 'httparty'
