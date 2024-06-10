@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe DailyRecord, type: :model do
@@ -6,7 +8,7 @@ RSpec.describe DailyRecord, type: :model do
 
     shared_examples 'updates average age based on gender count' do |gender, initial_count, updated_count, age, expected_avg_age|
       it "updates the #{gender}_avg_age" do
-        create_list(:user, initial_count, gender: gender, age: age)
+        create_list(:user, initial_count, gender:, age:)
         daily_record.send("#{gender}_count=", updated_count)
         daily_record.save!
         expect(daily_record.send("#{gender}_avg_age")).to eq(expected_avg_age)

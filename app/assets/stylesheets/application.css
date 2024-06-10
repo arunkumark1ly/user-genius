@@ -56,7 +56,7 @@ th {
 
 .flash-messages {
     position: fixed;
-    top: 20%;
+    top: 10%;
     left: 50%;
     transform: translate(-50%, -50%);
     width: auto;
@@ -93,12 +93,4 @@ th {
   
   .navbar-links a {
     margin-right: 10px;
-  }
-  
-  .inline-form button {
-    background: none;
-    border: none;
-    color: inherit;
-    font: inherit;
-    cursor: pointer;
   }

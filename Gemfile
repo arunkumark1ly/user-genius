@@ -62,9 +62,9 @@ group :development, :test do
   gem 'factory_bot_rails'
 
   # RuboCop for code linting and formatting
-  gem 'rubocop', '~> 1.64', require: false
   gem 'rspec-rails'
-  gem 'webmock'  
+  gem 'rubocop', '~> 1.64', require: false
+  gem 'webmock'
 end
 
 group :development do

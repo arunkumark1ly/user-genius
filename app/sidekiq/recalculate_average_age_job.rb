@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class RecalculateAverageAgeJob
   include Sidekiq::Job
 
@@ -7,10 +9,10 @@ class RecalculateAverageAgeJob
     return unless daily_record
 
     # Calculate the new average age
-    new_average = User.where(gender: gender, created_at: ..daily_record_date.end_of_day).average(:age).to_f
+    new_average = User.where(gender:, created_at: ..daily_record_date.end_of_day).average(:age).to_f
 
     # Calculate the new count
-    new_count = User.where(gender: gender, created_at: daily_record_date.all_day).count
+    new_count = User.where(gender:, created_at: daily_record_date.all_day).count
 
     # Update the DailyRecord with new average age and count
     if gender == 'male'

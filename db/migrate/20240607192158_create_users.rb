@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class CreateUsers < ActiveRecord::Migration[7.1]
   def up
     create_table :users do |t|
@@ -13,5 +15,5 @@ class CreateUsers < ActiveRecord::Migration[7.1]
 
   def down
     drop_table :users
-  end  
+  end
 end

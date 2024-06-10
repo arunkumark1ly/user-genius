@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class UsersController < ApplicationController
   before_action :set_user, only: [:destroy]
 
@@ -6,7 +8,7 @@ class UsersController < ApplicationController
                    User.where("name ->> 'first' ILIKE :search OR name ->> 'last' ILIKE :search
                                OR CAST(age AS TEXT) ILIKE :search
                                OR gender ILIKE :search",
-                               search: "%#{params[:search]}%")
+                              search: "%#{params[:search]}%")
                  else
                    User.all
                  end

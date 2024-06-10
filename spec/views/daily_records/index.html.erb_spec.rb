@@ -1,15 +1,19 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
-RSpec.describe "daily_records/index.html.erb", type: :view do
+RSpec.describe 'daily_records/index.html.erb', type: :view do
   before do
     assign(:daily_records, [
-      DailyRecord.create!(date: Date.today, male_count: 50, female_count: 50, male_avg_age: 50.0, female_avg_age: 50.0),
-      DailyRecord.create!(date: Date.yesterday, male_count: 50, female_count: 50, male_avg_age: 50.0, female_avg_age: 50.0)
-    ])
+             DailyRecord.create!(date: Date.today, male_count: 50, female_count: 50, male_avg_age: 50.0,
+                                 female_avg_age: 50.0),
+             DailyRecord.create!(date: Date.yesterday, male_count: 50, female_count: 50, male_avg_age: 50.0,
+                                 female_avg_age: 50.0)
+           ])
     render
   end
 
-  it "displays a table with daily records" do
+  it 'displays a table with daily records' do
     expect(rendered).to include('<th>Date</th>')
     expect(rendered).to include('<th>Male Count</th>')
     expect(rendered).to include('<th>Female Count</th>')

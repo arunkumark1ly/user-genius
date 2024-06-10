@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 require 'sidekiq/testing'
 Sidekiq::Testing.fake!
@@ -8,15 +10,17 @@ RSpec.describe FetchUsersJob, type: :job do
   describe '#perform' do
     let(:user_data) do
       {
-        'login' => {'uuid' => '143'},
+        'login' => { 'uuid' => '143' },
         'gender' => 'male',
-        'name' => {"last"=>"Kandasamy", "first"=>"ArunKumar", "title"=>"Mr"},
-        'location' => {"city"=>"Bangalore", "state"=>"Karnataka", "country"=>"India", "postcode"=>560068},
-        'dob' => {'age' => 38}
+        'name' => { 'last' => 'Kandasamy', 'first' => 'ArunKumar', 'title' => 'Mr' },
+        'location' => { 'city' => 'Bangalore', 'state' => 'Karnataka', 'country' => 'India', 'postcode' => 560_068 },
+        'dob' => { 'age' => 38 }
       }
     end
 
-    let(:response) { instance_double(HTTParty::Response, success?: true, parsed_response: {'results' => [user_data]}) }
+    let(:response) do
+      instance_double(HTTParty::Response, success?: true, parsed_response: { 'results' => [user_data] })
+    end
 
     before do
       allow(HTTParty).to receive(:get).and_return(response)
@@ -29,7 +33,8 @@ RSpec.describe FetchUsersJob, type: :job do
       expect(user.uuid).to eq('143')
       expect(user.gender).to eq('male')
       expect(user.full_name_with_title).to eq('Mr ArunKumar Kandasamy')
-      expect(user.location).to eq({"city"=>"Bangalore", "state"=>"Karnataka", "country"=>"India", "postcode"=>560068})
+      expect(user.location).to eq({ 'city' => 'Bangalore', 'state' => 'Karnataka', 'country' => 'India',
+                                    'postcode' => 560_068 })
       expect(user.age).to eq(38)
     end
 
