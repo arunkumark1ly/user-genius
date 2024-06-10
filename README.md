@@ -1,9 +1,6 @@
-# README
+# User Genius
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
-
-Things you may want to cover:
+Things you may want to know:
 
 * Environment setup instructions
     System should require rails server , sidekiq, redis, postgres, all these should run parallely. Follow the below Instruction to make everything setup and run 
