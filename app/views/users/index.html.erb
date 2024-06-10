@@ -1,12 +1,12 @@
 <h1>Users</h1>
+<p>Total Users: <%= @total_users %></p>
 
-<%= form_tag(users_path, method: :get) do %>
-  <%= label_tag(:search, "Search by name:") %>
-  <%= text_field_tag(:search, params[:search]) %>
-  <%= submit_tag("Search") %>
+<%= form_with url: users_path, method: :get, local: true, class: "d-flex mb-3" do |form| %>
+  <%= form.text_field :search, value: params[:search], class: "form-control me-2", placeholder: "Search by name, age, gender, or location" %>
+  <%= form.submit "Search", class: "btn btn-outline-secondary" %>
 <% end %>
 
-<table>
+<table class="table">
   <thead>
     <tr>
       <th>Name</th>
@@ -20,11 +20,11 @@
     <% @users.each do |user| %>
       <tr>
         <td><%= user.full_name_with_title %></td>
-        <td><%= user.age %></td> <!-- Assuming `age` is a method or attribute -->
+        <td><%= user.age %></td>
         <td><%= user.gender %></td>
         <td><%= user.created_at.strftime("%Y-%m-%d") %></td>
         <td>
-          <%= link_to 'Delete', user_path(user), method: :delete, data: { confirm: 'Are you sure?' } %>
+          <%= link_to 'Delete', user_path(user), method: :delete, data: { "turbo-method": :delete }, class: "btn btn-sm btn-outline-danger" %>
         </td>
       </tr>
     <% end %>
