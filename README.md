@@ -1,14 +1,26 @@
 # User Genius
 
-Things you may want to know:
+Welcome to the User Genius project! Below you will find all the necessary instructions to set up and run the environment, as well as system dependencies and configuration details.
 
-* Environment setup instructions
-    System should require rails server , sidekiq, redis, postgres, all these should run parallely. Follow the below Instruction to make everything setup and run 
+## Environment Setup Instructions
 
-* System dependencies
-    Ubuntu OS
+Ensure that the following services are running in parallel:
+- Rails server
+- Sidekiq
+- Redis
+- PostgreSQL
 
-* Install Ruby 3.3.1 using rbenv
+Follow the instructions below to set up everything:
+
+## System Dependencies
+
+- **Operating System**: Ubuntu OS
+
+## Installation Guide
+
+### Ruby
+
+* Install Ruby 3.3.1 using rbenv:
     sudo apt update
     sudo apt install git curl libssl-dev libreadline-dev zlib1g-dev autoconf bison build-essential libyaml-dev libreadline-dev libncurses5-dev libffi-dev libgdbm-dev
     curl -fsSL https://github.com/rbenv/rbenv-installer/raw/HEAD/bin/rbenv-installer | bash
