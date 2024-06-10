@@ -20,6 +20,11 @@ class UsersController < ApplicationController
     redirect_to users_url, notice: 'User was successfully destroyed.'
   end
 
+  def fetch_users
+    FetchUsersJob.perform_async
+    redirect_to users_path, notice: 'Fetch users job has been enqueued.'
+  end
+
   private
 
   def set_user

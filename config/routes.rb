@@ -4,6 +4,10 @@ Rails.application.routes.draw do
   get 'daily_records/index'
   resources :users, only: [:index, :destroy]
   resources :daily_records, only: [:index]
+
+  # Define a route for triggering the FetchUsersJob
+  post 'trigger_fetch_users', to: 'users#fetch_users'
+
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.

@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
   </head>
@@ -13,8 +12,22 @@
   <body>
     <!-- Navigation Bar -->
     <div class="navbar">
-      <%= link_to 'Users', users_path %>
-      <%= link_to 'Daily Records', daily_records_path %>
+      <div class="navbar-links">
+        <%= link_to 'Users', users_path %>
+        <%= link_to 'Daily Records', daily_records_path %>
+      </div>
+      <div class="navbar-button">
+        <%= button_to 'Fetch Users', trigger_fetch_users_path, method: :post, form_class: 'inline-form' %>
+      </div>
+    </div>
+
+    <!-- Flash Messages -->
+    <div class="flash-messages">
+      <% flash.each do |type, message| %>
+        <div class="flash <%= type %>">
+          <%= message %>
+        </div>
+      <% end %>
     </div>
 
     <!-- Main Content -->
