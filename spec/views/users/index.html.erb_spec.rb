@@ -7,10 +7,26 @@ RSpec.describe 'users/index.html.erb', type: :view do
     users = double('paginated_users')
     allow(users).to receive(:total_pages).and_return(1)
     allow(users).to receive(:current_page).and_return(1)
-    allow(users).to receive(:limit_value).and_return(2)  # assuming per page limit is 2 for simplicity
+    allow(users).to receive(:limit_value).and_return(2) # assuming per page limit is 2 for simplicity
 
-    allow(users).to receive(:each).and_yield(User.new(id: 1, name: { 'last' => 'Kandasamy', 'first' => 'ArunKumar', 'title' => 'Mr' }, age: 30, gender: "Male", created_at: '2023-01-02'))
-                                    .and_yield(User.new(id: 2, name: { 'last' => 'ArunKumar', 'first' => 'Megala', 'title' => 'Mrs' }, age: 25, gender: "Female", created_at: '2023-01-03'))
+    allow(users).to receive(:each).and_yield(User.new(id: 1,
+                                                      name: {
+                                                        'last' => 'Kandasamy',
+                                                        'first' => 'ArunKumar',
+                                                        'title' => 'Mr'
+                                                      },
+                                                      age: 30,
+                                                      gender: 'Male',
+                                                      created_at: '2023-01-02'))
+                                  .and_yield(User.new(id: 2,
+                                                      name: {
+                                                        'last' => 'ArunKumar',
+                                                        'first' => 'Megala',
+                                                        'title' => 'Mrs'
+                                                      },
+                                                      age: 25,
+                                                      gender: 'Female',
+                                                      created_at: '2023-01-03'))
 
     assign(:users, users)
     assign(:total_users, 2)
