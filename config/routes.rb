@@ -1,10 +1,26 @@
+# frozen_string_literal: true
+
 Rails.application.routes.draw do
-  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
+  get 'daily_records/index'
+  resources :users, only: %i[index destroy]
+  resources :daily_records, only: [:index]
 
-  # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
-  # Can be used by load balancers and uptime monitors to verify that the app is live.
-  get "up" => "rails/health#show", as: :rails_health_check
+  post 'trigger_fetch_users', to: 'users#fetch_users'
+  post 'trigger_daily_record_update', to: 'daily_records#update_records'
 
-  # Defines the root path route ("/")
-  # root "posts#index"
+  get 'up' => 'rails/health#show', as: :rails_health_check
+
+  root 'users#index'
+
+  require 'sidekiq/web'
+
+  # Optional: Basic Authentication for Sidekiq Web UI
+  Sidekiq::Web.use Rack::Auth::Basic do |username, password|
+    # Environment variables for security
+    # username == ENV['SIDEKIQ_USERNAME'] && password == ENV['SIDEKIQ_PASSWORD']
+    username == 'admin' && password == 'admin'
+  end
+
+  # Mounting Sidekiq Web UI
+  mount Sidekiq::Web => '/sidekiq'
 end

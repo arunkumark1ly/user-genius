@@ -1,0 +1,10 @@
+:scheduler:
+  :schedule:
+    fetch_users_job:
+      cron: "30 * * * *"   # Runs at the start of every hour
+      class: FetchUsersJob
+      queue: default
+    daily_record_updater:
+      cron: "45 23 * * *"   # Runs at 23:59 every day
+      class: DailyRecordUpdaterWorker
+      queue: default

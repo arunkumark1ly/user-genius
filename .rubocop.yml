@@ -1,0 +1,7 @@
+AllCops:
+  Exclude:
+    - 'bin/**/*'
+Metrics/BlockLength:
+  Max: 30
+  Exclude:
+    - 'config/environments/*.rb' 
