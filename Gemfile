@@ -84,3 +84,4 @@ group :test do
   # gem 'selenium-webdriver'
   gem 'fakeredis', require: 'fakeredis'
 end
+
