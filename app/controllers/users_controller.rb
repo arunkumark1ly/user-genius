@@ -2,15 +2,17 @@ class UsersController < ApplicationController
   before_action :set_user, only: [:destroy]
 
   def index
-    @users =  if params[:search]
-                User.where("name ->> 'first' ILIKE :search OR name ->> 'last' ILIKE :search 
-                            OR CAST(age AS TEXT) ILIKE :search 
-                            OR gender ILIKE :search", 
-                            search: "%#{params[:search]}%")
-              else
-                User.all
-              end
-    @total_users = User.count
+    base_query = if params[:search]
+                   User.where("name ->> 'first' ILIKE :search OR name ->> 'last' ILIKE :search
+                               OR CAST(age AS TEXT) ILIKE :search
+                               OR gender ILIKE :search",
+                               search: "%#{params[:search]}%")
+                 else
+                   User.all
+                 end
+
+    @users = base_query.page(params[:page]).per(25)
+    @total_users = base_query.count
   end
 
   def destroy
